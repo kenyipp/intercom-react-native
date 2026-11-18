@@ -116,7 +116,7 @@ RCT_EXPORT_METHOD(sendTokenToIntercom:(NSString *)token
                              resolve(@(YES));
                          }
                          failure:^(NSError * _Nullable error) {
-                             reject(SEND_TOKEN_TO_INTERCOM, @"Error in sendTokenToIntercom", error);
+                             reject(SEND_TOKEN_TO_INTERCOM, @"Error in sendTokenToIntercom", error ? [self removeNullUnderlyingError:error] : nil);
                          }];
     } @catch (NSException *exception) {
         reject(SEND_TOKEN_TO_INTERCOM, @"Error in sendTokenToIntercom", [self exceptionToError:exception :SEND_TOKEN_TO_INTERCOM :@"sendTokenToIntercom"]);
